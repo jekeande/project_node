@@ -1,0 +1,55 @@
+---------------------------------------
+------Documentacion projeto Node-------
+1 - npm init
+2 - npm i express
+3 - npm i nodemon
+4 - crear el index.js
+5 - editar package.json 
+        "dev": "nodemon index.js",
+6 - npm run dev
+7 - npm install --save sequelize
+8 - npm install --save sqlite3
+9 - editar el index.js para crear la base de datos
+        const { Sequelize } = require('sequelize')
+        const sequelize = new Sequelize({
+        dialect: 'sqlite',
+        storage: 'my-database.db'})
+10 - npm install --save-dev sequelize-cli
+11 - npx sequelize-cli init
+12 - editar arquivo config.json
+        "development": {
+        "storage": "my-database.db",
+        "dialect": "sqlite"
+        }
+13 - creamos la tabla con las columnas Description y Done
+        npx sequelize-cli model:generate --name Tasks --attributes Description:string,Done:boolean
+14 - creamos la base de datos
+        npx sequelize-cli db:migrate
+15 - vamos a crear una seeds para crear datos
+        npx sequelize-cli seed:generate --name demo-Tasks
+16 - editamos el arquivo seeders
+        module.exports = {
+        async up (queryInterface, Sequelize) {
+        /**
+        * Add seed commands here.
+        *
+        * Example:
+        * await queryInterface.bulkInsert('People', [{
+        *   name: 'John Doe',
+        *   isBetaMember: false
+        * }], {});
+        */
+        await queryInterface.bulkInsert('Tasks',[{
+        Description: 'Estudiar',
+        Done: true,
+        createdAt: new Date(),
+        updatedAt:  new Date()
+        },{
+        Description: 'Trabajar',
+        Done: true,
+        createdAt: new Date(),
+        updatedAt:  new Date()
+        }], {});
+        },
+17 - ejecutamos el seeders para crear los registros en las tablas
+        npx sequelize-cli db:seed:all
