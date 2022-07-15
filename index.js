@@ -57,7 +57,6 @@ app.put("/tasks/:id", async (req, res) => {
    (`UPDATE Tasks SET description, done WHERE id = ${id}`,
    [req.body.description, req.body.done])
    res.json({ idTasks })*/
-    
 });
 /*-----------------------------------------------
 ------------------------DELETE/ID--------------------
@@ -68,7 +67,9 @@ app.delete("/tasks/:id", async (req, res) => {
    //const idTasks = await sequelize.query(`DELETE FROM Tasks WHERE id = ${id}`, [])
    res.send({ message: `${id} Tasks were deleted successfully!` });
 });
-//-----------------------------------------------
+/*-----------------------------------------------
+----------------------PORT-----------------------
+-------------------------------------------------*/
 app.listen(3000, () => {
     console.log('Iniciando o ExpressJS na porta 3000')
 })
