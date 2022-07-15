@@ -12,12 +12,12 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('Tasks',[{
-    Description: 'Estudiar',
+    Description: 'Meditar',
     Done: true,
     createdAt: new Date(),
     updatedAt:  new Date()
    },{
-    Description: 'Trabajar',
+    Description: 'Caminhar',
     Done: true,
     createdAt: new Date(),
     updatedAt:  new Date()
