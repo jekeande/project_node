@@ -18,6 +18,20 @@ app.post('/tasks', async (req, res) =>{
     [req.body.description, req.body.done],)
     res.json({ Tasks })
     /*
+    
+    db.run("INSERT INTO <tabela>(<colunas>) VALUES(?,?)",
+    [req.body.<parametro>, req.body.<parametro>],
+    function(err, result){
+        if(err) {
+            res.status(400).json({ "error": err.message })
+            return;
+        }
+        res.status(201).json({
+            "ID": this.lastID
+        })
+    })
+})
+
     ----------------------------------------
     const attributes = ([description, done], req.body);
     const Tasks = Tasks.create(attributes);
