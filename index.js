@@ -1,23 +1,37 @@
-const { Sequelize, DataTypes} = require('sequelize')
-const TaskMoldel = require('./models/tasks')
-const express = require('express')
-const app = express()
+const { Sequelize, DataTypes} = require('sequelize');
+const TaskMoldel = require('./models/tasks');
+const express = require('express');
+const app = express();
+app.use(express.json());
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: 'my-database.db'
-})
+});
 
 const tasks = TaskMoldel(sequelize, DataTypes)
 
 /*-----------------------------------------------
 -----------------------POST-----------------------
 -------------------------------------------------*/
-app.post('/tasks', async (req, res) =>{
-    const Tasks = await sequelize.query("INSERT INTO tasks (description,done) VALUES (?,?)",
-    [req.body.description, req.body.done],)
-    res.json({ Tasks })
-    /*
+app.post('/tasks', (req, res, next) =>{
+    sequelize.query("INSERT INTO tasks (description,done) VALUES (?,?)",
+    [req.body.description, req.body.done],
+    function(err, result){
+      /*  if(err) {
+            res.status(400).json({ "error": err.message })
+            return;
+       } */
+        res.status(201).json({
+            "ID": this.lastID
+        })
+     })
+})
+ 
+
+ 
+      /*res.json({ "ID": this.id })
+  
     
     db.run("INSERT INTO <tabela>(<colunas>) VALUES(?,?)",
     [req.body.<parametro>, req.body.<parametro>],
@@ -42,7 +56,7 @@ app.post('/tasks', async (req, res) =>{
         done: req.body.done 
       })
     res.json({ Tasks })*/
-})
+
 /*-----------------------------------------------
 ------------------------GET-----------------------
 -------------------------------------------------*/
