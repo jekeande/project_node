@@ -16,7 +16,7 @@
         storage: 'my-database.db'})
 10 - npm install --save-dev sequelize-cli
 11 - npx sequelize-cli init
-12 - editar arquivo config.json
+12 - editar arquivo config.json 
         "development": {
         "storage": "my-database.db",
         "dialect": "sqlite"
