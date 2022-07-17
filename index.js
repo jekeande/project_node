@@ -2,7 +2,6 @@ const { Sequelize, DataTypes} = require('sequelize');
 const TaskMoldel = require('./models/tasks');
 const express = require('express');
 const app = express();
-app.use(express.json());
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
